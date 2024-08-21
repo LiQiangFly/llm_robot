@@ -1,5 +1,5 @@
 # llm_robot
-此仓库是对@[TommyZihao](https://github.com/TommyZihao/vlm_arm/commits?author=TommyZihao)  [vlm_arm](https://github.com/TommyZihao/vlm_arm)项目的量化和压缩，原项目调用百度和零一万物商用大模型（需要花钱买`api_key`和`access_key`，然后把组装好的message丢给大模型api），需要花一点点money，我用开源模型，对其中使用到的语音识别和大语言模型进行替代，并经过量化和压缩，可以直接跑在本地cpu，整个项目大小4.84GB，效果不逊色商业模型。
+此仓库是对@[TommyZihao](https://github.com/TommyZihao/vlm_arm/commits?author=TommyZihao)  [vlm_arm](https://github.com/TommyZihao/vlm_arm)项目的量化和压缩，原项目调用百度和零一万物商用大模型（需要花钱买`api_key`和`access_key`，然后把组装好的message丢给大模型api），需要花一点点money，我用开源模型，对其中使用到的语音识别和大语言模型进行替代，并经过量化和压缩，可以直接跑在本地cpu，整个项目大小4.84GB，效果还不错。
 
 目前实现版本，只有3个函数，录音`record`、语音识别`speech_recognition_cpp`和任务规划`llm_qwen`，并且集成到一个python文件中。暂时未实现`TTS`。
 
@@ -211,4 +211,12 @@ def record(MIC_INDEX="default", DURATION=5):
     proc.wait()
     print('录音结束')
 ```
+
+# 参考项目
+
+[vlm_arm](https://github.com/TommyZihao/vlm_arm)
+
+[qwen.cpp](https://github.com/QwenLM/qwen.cpp)
+
+[whisper.cpp](https://github.com/ggerganov/whisper.cpp)
 
