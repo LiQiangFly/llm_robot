@@ -1,0 +1,6 @@
+[submodule "qwen/qwen-cpp"]
+	path = qwen/qwen-cpp
+	url = git@github.com:QwenLM/qwen.cpp.git
+[submodule "whisper/whisper-cpp"]
+	path = whisper/whisper-cpp
+	url = https://github.com/ggerganov/whisper.cpp.git
