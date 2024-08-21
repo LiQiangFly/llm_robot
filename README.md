@@ -65,7 +65,20 @@ python3 qwen_cpp/convert.py -i qwen/Qwen-7B-chat -t q4_0 -o qwen7b-ggml.bin
 
 官方支持的量化情况，目前支持7B和14B chat模型到q4_0、q4_1、q5_0等级别的量化
 
-![image-20240821150224088](/Users/liqiang/Library/Application Support/typora-user-images/image-20240821150224088.png)
+The original model (`-i <model_name_or_path>`) can be a HuggingFace model name or a local path to your pre-downloaded model. Currently supported models are:
+
+- Qwen-7B: `Qwen/Qwen-7B-Chat`
+- Qwen-14B: `Qwen/Qwen-14B-Chat`
+
+You are free to try any of the below quantization types by specifying `-t <type>`:
+
+- `q4_0`: 4-bit integer quantization with fp16 scales.
+- `q4_1`: 4-bit integer quantization with fp16 scales and minimum values.
+- `q5_0`: 5-bit integer quantization with fp16 scales.
+- `q5_1`: 5-bit integer quantization with fp16 scales and minimum values.
+- `q8_0`: 8-bit integer quantization with fp16 scales.
+- `f16`: half precision floating point weights without quantization.
+- `f32`: single precision floating point weights without quantization.
 
 ### 编译
 
