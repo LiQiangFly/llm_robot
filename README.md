@@ -1,18 +1,18 @@
 # llm_robot
-此仓库是对同济子豪兄[vlm_arm](https://github.com/TommyZihao/vlm_arm)项目的量化和压缩，原项目调用百度和零一万物商用大模型（需要花钱买`api_key`和`access_key`，然后把组装好的message丢给大模型api），需要花一点点money，我开源模型，对其中使用到的语音识别和大语言模型进行替代，并经过量化和压缩，可以直接跑在本地cpu，无需gpu，整个项目大小4.84GB，效果不逊色商业模型。
+此仓库是对@[TommyZihao](https://github.com/TommyZihao/vlm_arm/commits?author=TommyZihao)  [vlm_arm](https://github.com/TommyZihao/vlm_arm)项目的量化和压缩，原项目调用百度和零一万物商用大模型（需要花钱买`api_key`和`access_key`，然后把组装好的message丢给大模型api），需要花一点点money，我用开源模型，对其中使用到的语音识别和大语言模型进行替代，并经过量化和压缩，可以直接跑在本地cpu，整个项目大小4.84GB，效果不逊色商业模型。
 
-目前实现版本，只有3个函数，录音`record`、语音识别`speech_recognition_cpp`和任务规划`llm_qwen`，并且集成到一个python文件中。
+目前实现版本，只有3个函数，录音`record`、语音识别`speech_recognition_cpp`和任务规划`llm_qwen`，并且集成到一个python文件中。暂时未实现`TTS`。
 
-speech_recognition_cpp采用whisper.cpp（`ggml-small.bin`）的small版本，大小488MB，识别效果不错，`20s`时长语音识别大约`0.9s`即可搞定。
+speech_recognition_cpp采用`whisper.cpp`（`ggml-small.bin`）的small版本，大小488MB，识别效果不错，`20s`时长语音识别大约`0.9s`即可搞定。
 
-llm_qwen采用qwen.cpp，将qwen-7B-chat 4-bit量化后编译（`qwen7b-ggml.bin`），同时启动OpenBLAS库进一步加速（不过效果不显著呀），模型最终大小4.35GB，效果还不错，只是推理时间还不太行，大概要13sec。
+`llm_qwen`采用`qwen.cpp`，将`qwen-7B-chat 4-bit`量化后编译（`qwen7b-ggml.bin`），同时启动OpenBLAS库进一步加速（不过效果不显著呀），模型最终大小4.35GB，效果还不错，只是推理时间还不太行，大概要13sec。
 
 另外，qwen-1.8B小是小，但效果不行啊！
 
 为了进一步减少推理时间，有一些优化方向，列出来，有兴趣有条件的兄弟可以接着优化：
 
 - 硬件。我的mac CPU12核18GB。CPU做矩阵运算，能力很弱，有条件当然用同等GPU啦
-- 微调。有GPU，可以用lora试试，把sys_promt吸收到模型中去，就不用每次都要重新切词编码，这部分优化应该可以大幅度提高推理效率
+- 微调。有GPU，可以用lora试试，把sys_promt吸收到模型中去，就不用每次都要重新切词编码，这部分优化应该可以大幅度提高推理效率。
 
 无需再花时间的部分：
 
