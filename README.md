@@ -95,6 +95,46 @@ cmake --build build -j --config Release
 cmake -B build -DGGML_OPENBLAS=ON && cmake --build build -j
 ```
 
+推理命令行
+
+```
+./build/bin/main -m qwen7b-ggml.bin --tiktoken ./qwen.tiktoken -p 你好
+```
+
+命令行可选参数
+
+```
+options:
+  -h, --help              show this help message and exit
+  -m, --model PATH        model path (default: qwen-ggml.bin)
+  --mode                  inference mode chose from {chat, generate} (default: chat)
+  -p, --prompt PROMPT     prompt to start generation with (default: 你好)
+  -i, --interactive       run in interactive mode
+  -l, --max_length N      max total length including prompt and output (default: 2048)
+  -c, --max_context_length N
+                          max context length (default: 512)
+  --top_k N               top-k sampling (default: 0)
+  --top_p N               top-p sampling (default: 0.7)
+  --temp N                temperature (default: 0.95)
+  --repeat_penalty N      penalize repeat sequence of tokens (default: 1.0, 1.0 = disabled)
+  -t, --threads N         number of threads for inference
+  -v, --verbose           display verbose output including config/system/performance info
+```
+
+--temp：
+（1）较高的数值会使输出更加随机，而较低的数值会使其更加集中和确定
+（2）默认0.95，范围 (0, 1.0]，不能为0
+
+--top_p：
+（1）影响输出文本的多样性，取值越大，生成文本的多样性越强
+（2）默认0.7，取值范围 [0, 1.0]
+
+--top_k：
+
+采样参数，在每轮token生成时，保留k个概率最高的token作为候选：
+（1）影响输出文本的多样性，取值越大，生成文本的多样性越强
+（2）取值范围：正整数
+
 ### 移植
 
 需要移植三个文件
